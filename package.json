@@ -6,7 +6,9 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/static": "^1.4.7",
+    "elysia": "latest",
+    "elysia-connect-middleware": "^0.0.6"
   },
   "devDependencies": {
     "bun-types": "latest"
