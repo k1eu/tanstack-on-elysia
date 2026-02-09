@@ -1,17 +1,46 @@
 {
-  "name": "app",
-  "version": "1.0.50",
+  "name": "app-client",
+  "private": true,
+  "type": "module",
   "scripts": {
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "NODE_ENV=development bun --bun --watch run server.dev.ts",
+    "build": "NODE_ENV=production bun run build:frontend && bun run build:server",
+    "build:frontend": "bun --bun vite build",
+    "build:server": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile dist/app server.prod.ts",
+    "start": "NODE_ENV=production ./dist/app"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.6",
+    "@tanstack/react-devtools": "^0.7.0",
+    "@tanstack/react-router": "^1.132.0",
+    "@tanstack/react-router-devtools": "^1.132.0",
+    "@tanstack/react-router-ssr-query": "^1.131.7",
+    "@tanstack/react-start": "^1.132.0",
+    "@tanstack/router-plugin": "^1.132.0",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.0.6",
+    "vite-tsconfig-paths": "^6.0.2",
     "@elysiajs/static": "^1.4.7",
     "elysia": "latest",
     "elysia-connect-middleware": "^0.0.6"
   },
   "devDependencies": {
+    "@tanstack/devtools-vite": "^0.3.11",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^27.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.0.5",
+    "web-vitals": "^5.1.0",
     "bun-types": "latest"
-  },
-  "module": "src/index.js"
+  }
 }

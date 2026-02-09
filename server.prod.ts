@@ -22,5 +22,5 @@ app.listen(
   {
     port: Number(process.env.PORT ?? 3000),
   },
-  () => console.log(`Server running on ${process.env.APP_URL}`),
+  () => console.log(`Server running on localhost:${process.env.PORT ?? 3000}`),
 );
