@@ -9,9 +9,7 @@ export const Route = createFileRoute("/demo/start/ssr/spa-mode")({
 });
 
 function RouteComponent() {
-  const [punkSongs, setPunkSongs] = useState<
-    Awaited<ReturnType<typeof getPunkSongs>>
-  >([]);
+  const [punkSongs, setPunkSongs] = useState<Awaited<ReturnType<typeof getPunkSongs>>>([]);
 
   const [dataFromApi, setDataFromApi] = useState<string>("");
 
@@ -19,9 +17,7 @@ function RouteComponent() {
     getPunkSongs().then(setPunkSongs);
     getTreaty()
       .data.get()
-      .then((data) =>
-        setDataFromApi(data.data?.message || "No data available"),
-      );
+      .then((data) => setDataFromApi(data.data?.message || "No data available"));
   }, []);
 
   return (
@@ -33,12 +29,9 @@ function RouteComponent() {
       }}
     >
       <div className="w-full max-w-2xl p-8 rounded-xl backdrop-blur-md bg-black/50 shadow-xl border-8 border-black/10">
-        <h1 className="text-3xl font-bold mb-6 text-green-400">
-          SPA Mode - Punk Songs
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 text-green-400">SPA Mode - Punk Songs</h1>
         <h2>
-          Data from API:{" "}
-          <span className="text-green-400 font-mono">{dataFromApi}</span>
+          Data from API: <span className="text-green-400 font-mono">{dataFromApi}</span>
         </h2>
         <ul className="space-y-3">
           {punkSongs.map((song) => (
@@ -46,9 +39,7 @@ function RouteComponent() {
               key={song.id}
               className="bg-white/10 border border-white/20 rounded-lg p-4 backdrop-blur-sm shadow-md"
             >
-              <span className="text-lg text-white font-medium">
-                {song.name}
-              </span>
+              <span className="text-lg text-white font-medium">{song.name}</span>
               <span className="text-white/60"> - {song.artist}</span>
             </li>
           ))}
