@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getTreaty } from "~/api-client";
+import { getApiClient } from "~/api-client";
 import { getPunkSongs } from "~/data/demo.punk-songs";
 
 export const Route = createFileRoute("/demo/start/ssr/full-ssr")({
@@ -7,7 +7,7 @@ export const Route = createFileRoute("/demo/start/ssr/full-ssr")({
   loader: async () => {
     return {
       punkSongs: await getPunkSongs(),
-      message: (await getTreaty().hello.get()).data || "No data available",
+      message: (await getApiClient().hello.get()).data || "No data available",
     };
   },
 });
@@ -24,9 +24,12 @@ function RouteComponent() {
       }}
     >
       <div className="w-full max-w-2xl p-8 rounded-xl backdrop-blur-md bg-black/50 shadow-xl border-8 border-black/10">
-        <h1 className="text-3xl font-bold mb-6 text-purple-400">Full SSR - Punk Songs</h1>
+        <h1 className="text-3xl font-bold mb-6 text-purple-400">
+          Full SSR - Punk Songs
+        </h1>
         <h2>
-          Data from API: <span className="text-purple-400 font-mono">{message}</span>
+          Data from API:{" "}
+          <span className="text-purple-400 font-mono">{message}</span>
         </h2>
         <ul className="space-y-3">
           {punkSongs.map((song) => (
@@ -34,7 +37,9 @@ function RouteComponent() {
               key={song.id}
               className="bg-white/10 border border-white/20 rounded-lg p-4 backdrop-blur-sm shadow-md"
             >
-              <span className="text-lg text-white font-medium">{song.name}</span>
+              <span className="text-lg text-white font-medium">
+                {song.name}
+              </span>
               <span className="text-white/60"> - {song.artist}</span>
             </li>
           ))}
