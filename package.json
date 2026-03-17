@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "dev": "NODE_ENV=development bun --bun --watch run server.dev.ts",
     "build": "NODE_ENV=production bun run build:frontend && bun run build:server",
     "build:frontend": "bun --bun vite build",
