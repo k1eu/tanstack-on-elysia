@@ -1,5 +1,5 @@
-import { backend } from "./src/backend";
 import Elysia from "elysia";
+import { backend } from "./server/index";
 import { staticPlugin } from "@elysiajs/static";
 
 const app = new Elysia().use(backend);

@@ -1,27 +1,39 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { getPunkSongs } from '@/data/demo.punk-songs'
+import { createFileRoute } from "@tanstack/react-router";
+import { getTreaty } from "~/api-client";
+import { getPunkSongs } from "~/data/demo.punk-songs";
 
-export const Route = createFileRoute('/demo/start/ssr/data-only')({
-  ssr: 'data-only',
+export const Route = createFileRoute("/demo/start/ssr/data-only")({
+  ssr: "data-only",
   component: RouteComponent,
-  loader: async () => await getPunkSongs(),
-})
+  loader: async () => {
+    return {
+      punkSongs: await getPunkSongs(),
+      message: getTreaty()
+        .hello.get()
+        .then((res) => res.data || "No data available"),
+    };
+  },
+});
 
 function RouteComponent() {
-  const punkSongs = Route.useLoaderData()
+  const { punkSongs, message } = Route.useLoaderData();
 
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-gradient-to-br from-zinc-800 to-black p-4 text-white"
       style={{
         backgroundImage:
-          'radial-gradient(50% 50% at 20% 60%, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)',
+          "radial-gradient(50% 50% at 20% 60%, #1a1a1a 0%, #0a0a0a 50%, #000000 100%)",
       }}
     >
       <div className="w-full max-w-2xl p-8 rounded-xl backdrop-blur-md bg-black/50 shadow-xl border-8 border-black/10">
         <h1 className="text-3xl font-bold mb-6 text-pink-400">
           Data Only SSR - Punk Songs
         </h1>
+        <h2>
+          Data from API:{" "}
+          <span className="text-pink-400 font-mono">{message}</span>
+        </h2>
         <ul className="space-y-3">
           {punkSongs.map((song) => (
             <li
@@ -37,5 +49,5 @@ function RouteComponent() {
         </ul>
       </div>
     </div>
-  )
+  );
 }

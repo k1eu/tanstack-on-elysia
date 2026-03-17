@@ -8,10 +8,12 @@
     "dev": "NODE_ENV=development bun --bun --watch run server.dev.ts",
     "build": "NODE_ENV=production bun run build:frontend && bun run build:server",
     "build:frontend": "bun --bun vite build",
-    "build:server": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile dist/app server.prod.ts",
+    "build:server": "bun build --minify-whitespace --minify-syntax --target bun --outfile dist/app server.prod.ts",
     "start": "NODE_ENV=production ./dist/app"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.4.8",
+    "@elysiajs/static": "^1.4.7",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-router": "^1.132.0",
@@ -19,14 +21,13 @@
     "@tanstack/react-router-ssr-query": "^1.131.7",
     "@tanstack/react-start": "^1.132.0",
     "@tanstack/router-plugin": "^1.132.0",
+    "elysia": "1.4.28",
+    "elysia-connect-middleware": "^0.0.6",
     "lucide-react": "^0.561.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.0.6",
-    "vite-tsconfig-paths": "^6.0.2",
-    "@elysiajs/static": "^1.4.7",
-    "elysia": "latest",
-    "elysia-connect-middleware": "^0.0.6"
+    "vite-tsconfig-paths": "^6.0.2"
   },
   "devDependencies": {
     "@tanstack/devtools-vite": "^0.3.11",
@@ -41,6 +42,6 @@
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
     "web-vitals": "^5.1.0",
-    "bun-types": "latest"
+    "bun-types": "1.3.10"
   }
 }

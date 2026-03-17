@@ -1,4 +1,4 @@
-import { backend } from "./src/backend";
+import { backend } from "./server/index";
 import Elysia from "elysia";
 import { createServer } from "vite";
 import { connect } from "elysia-connect-middleware";
@@ -16,7 +16,7 @@ app.use(connect(viteDevServer.middlewares));
 app.all("*", async ({ request }) => {
   try {
     const { default: serverEntry } =
-      await viteDevServer.ssrLoadModule("./src/server.ts");
+      await viteDevServer.ssrLoadModule("./src/tanstack-server.ts");
     return serverEntry.fetch(request);
   } catch (error) {
     if (error instanceof Error) viteDevServer.ssrFixStacktrace(error);
@@ -30,5 +30,7 @@ app.listen(
     port: Number(process.env.PORT ?? 3000),
   },
   () =>
-    console.log(`Server running on localhost:${process.env.PORT ?? 3000}  (in development mode)`),
+    console.log(
+      `Server running on localhost:${process.env.PORT ?? 3000}  (in development mode)`,
+    ),
 );
