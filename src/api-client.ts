@@ -1,6 +1,6 @@
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { treaty } from "@elysiajs/eden";
-import { type Backend, backend } from "api";
+import { type Backend, backend } from "server";
 
 export const getApiClient = createIsomorphicFn()
   .server(() => treaty(backend).api)

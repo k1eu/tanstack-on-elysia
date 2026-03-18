@@ -2,12 +2,22 @@ import Elysia, { t } from "elysia";
 import { openapi } from "@elysiajs/openapi";
 import { db as defaultDb, type AppDb } from "./database/db";
 import { usersTable } from "./database/schema";
+import { auth } from "./lib/auth";
+import { OpenAPI } from "./modules/auth/auth-openapi";
 
-export const createBackend = ({ db = defaultDb }: { db?: AppDb } = {}) =>
+export const createBackend = async ({ db = defaultDb }: { db?: AppDb } = {}) =>
   new Elysia({
     prefix: "/api",
   })
-    .use(openapi())
+    .mount(auth.handler)
+    .use(
+      openapi({
+        documentation: {
+          components: await OpenAPI.components,
+          paths: await OpenAPI.getPaths(),
+        },
+      }),
+    )
     .get("/hello", () => "Hello from the backend!")
     .get("/data", () => ({ message: "This is some data from the backend." }))
     .get("/users", async () => {
@@ -36,7 +46,7 @@ export const createBackend = ({ db = defaultDb }: { db?: AppDb } = {}) =>
       },
     );
 
-const backend = createBackend();
+const backend = await createBackend();
 
 export { backend };
-export type Backend = ReturnType<typeof createBackend>;
+export type Backend = Awaited<ReturnType<typeof createBackend>>;

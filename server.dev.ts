@@ -1,4 +1,4 @@
-import { backend } from "./api/index";
+import { backend } from "./server/index";
 import Elysia from "elysia";
 import { createServer } from "vite";
 import { connect } from "elysia-connect-middleware";

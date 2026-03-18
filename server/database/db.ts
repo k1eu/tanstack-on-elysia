@@ -2,7 +2,8 @@ import { createClient, type Client } from "@libsql/client";
 import { drizzle, type LibSQLDatabase } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
-const DEFAULT_DB_URL = process.env.SERVER_DB_FILE_NAME ?? "file:api/sqlite.db";
+const DEFAULT_DB_URL =
+  process.env.SERVER_DB_FILE_NAME ?? "file:server/sqlite.db";
 
 export type AppDb = LibSQLDatabase<typeof schema> & {
   $client: Client;

@@ -18,7 +18,7 @@ export const createTestApp = async () => {
   const db = createDb(":memory:");
   await createUsersTable(db);
 
-  const app = createBackend({ db });
+  const app = await createBackend({ db });
   const api = treaty(app).api;
 
   return {

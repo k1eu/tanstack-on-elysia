@@ -85,8 +85,9 @@ function UsersPage() {
                   Users from the API, rendered into the app.
                 </h1>
                 <p className="max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
-                  This page loads through <code>getApiClient()</code> and renders the
-                  current contents of the backend <code>/api/users</code> endpoint.
+                  This page loads through <code>getApiClient()</code> and
+                  renders the current contents of the backend{" "}
+                  <code>/api/users</code> endpoint.
                 </p>
               </div>
             </div>
@@ -105,7 +106,9 @@ function UsersPage() {
                 <p className="text-xs uppercase tracking-[0.28em] text-slate-400">
                   Data source
                 </p>
-                <p className="mt-2 font-mono text-sm text-amber-200">GET /api/users</p>
+                <p className="mt-2 font-mono text-sm text-amber-200">
+                  GET /api/users
+                </p>
               </div>
             </div>
           </div>
@@ -120,8 +123,8 @@ function UsersPage() {
               Create a user without leaving the page.
             </h2>
             <p className="mt-3 max-w-xl text-base leading-7 text-slate-600">
-              The form posts to <code>/api/users</code> through the shared API client and
-              then refreshes the list.
+              The form posts to <code>/api/users</code> through the shared API
+              client and then refreshes the list.
             </p>
 
             <form className="mt-8 grid gap-5" onSubmit={submitUser}>
@@ -194,7 +197,9 @@ function UsersPage() {
                 {feedback ? (
                   <p
                     className={`text-sm ${
-                      feedback.type === "success" ? "text-emerald-600" : "text-rose-600"
+                      feedback.type === "success"
+                        ? "text-emerald-600"
+                        : "text-rose-600"
                     }`}
                   >
                     {feedback.message}
@@ -219,12 +224,12 @@ function UsersPage() {
                 column is unique.
               </p>
               <p>
-                After a successful POST, the route invalidates and reloads the user list from
-                the backend instead of mutating local copies.
+                After a successful POST, the route invalidates and reloads the
+                user list from the backend instead of mutating local copies.
               </p>
               <p>
-                This keeps the page aligned with the same API data source used during the
-                initial loader render.
+                This keeps the page aligned with the same API data source used
+                during the initial loader render.
               </p>
             </div>
           </aside>
@@ -239,8 +244,8 @@ function UsersPage() {
               No users found in the database.
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-slate-600">
-              Create a few users through the API and reload this page to see them listed
-              here.
+              Create a few users through the API and reload this page to see
+              them listed here.
             </p>
           </section>
         ) : (
