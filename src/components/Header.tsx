@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronRight,
   Home,
+  KeyRound,
   Menu,
   Network,
   SquareFunction,
@@ -75,6 +76,19 @@ export default function Header() {
           >
             <Users size={20} />
             <span className="font-medium">Users</span>
+          </Link>
+
+          <Link
+            to="/auth"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+            activeProps={{
+              className:
+                "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
+            }}
+          >
+            <KeyRound size={20} />
+            <span className="font-medium">Auth</span>
           </Link>
 
           {/* Demo Links Start */}

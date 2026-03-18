@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import Header from "../components/Header";
 
+//@ts-expect-error - css import
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -27,6 +28,8 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  errorComponent: () => <div>error</div>,
+  notFoundComponent: () => <div>not found</div>,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {

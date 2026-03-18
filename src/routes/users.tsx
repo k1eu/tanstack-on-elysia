@@ -46,7 +46,7 @@ function UsersPage() {
       await getApiClient().users.post({
         data: {
           name: form.name.trim(),
-          age: Number(form.age),
+          id: crypto.randomUUID(),
           email: form.email.trim(),
         },
       });
